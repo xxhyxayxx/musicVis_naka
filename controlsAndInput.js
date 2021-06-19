@@ -1,19 +1,19 @@
 //Constructor function to handle the onscreen menu, keyboard and mouse
 //controls
-function ControlsAndInput(){
+ControlsAndInput = class{
 	
-	this.menuDisplayed = false;
+	menuDisplayed = false;
 	
 	//playback button displayed in the top left of the screen
-	this.playbackButton = new PlaybackButton();
+	playbackButton = new PlaybackButton();
 
 	//make the window fullscreen or revert to windowed
-	this.mousePressed = function(){
+	mousePressed = () => {
 		//???
 		//check if the playback button has been clicked
 		//if not make the visualisation fullscreen
 		if(!this.playbackButton.hitCheck()){
-			var fs = fullscreen();
+			const fs = fullscreen();
 			fullscreen(!fs);
 		}
 
@@ -21,20 +21,20 @@ function ControlsAndInput(){
 
 	//responds to keyboard presses
 	//@param keycode the ascii code of the keypressed
-	this.keyPressed = function(keycode){
+	keyPressed = (keycode) => {
 		console.log(keycode);
-		if(keycode == 32){
+		if(keycode === 32){
 			this.menuDisplayed = !this.menuDisplayed;
 		}
 
 		if(keycode > 48 && keycode < 58){
-			var visNumber = keycode - 49;
+			const visNumber = keycode - 49;
 			vis.selectVisual(vis.visuals[visNumber].name);
 		}
 	};
 
 	//draws the playback button and potentially the menu
-	this.draw = function(){
+	draw = () => {
 		push();
 		fill("white");
 		stroke("black");
@@ -53,10 +53,10 @@ function ControlsAndInput(){
 
 	};
 
-	this.menu = function(){
+	menu = () => {
 		//draw out menu items for each visualisation
 		//???
-		for(i = 0; i < vis.visuals.length; i++){
+		for(let i = 0; i < vis.visuals.length; i++){
 			text((i + 1) + ":" + vis.visuals[i].name, 100, 70 + i * 50);
 		}
 	};

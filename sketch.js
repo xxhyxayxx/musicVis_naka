@@ -1,13 +1,13 @@
 //global for the controls and input 
-var controls = null;
+let controls = null;
 //store visualisations in a container
-var vis = null;
+let vis = null;
 //variable for the p5 sound object
-var sound = null;
+let sound = null;
 //variable for p5 fast fourier transform
-var fourier;
-var amplitude;
-var t;
+let fourier;
+let amplitude;
+let t;
 function preload(){
 	sound = loadSound('assets/IMG_1196.mp4');
 	font = loadFont('assets/Roboto-Regular.ttf');

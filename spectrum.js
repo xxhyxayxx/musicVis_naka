@@ -1,21 +1,16 @@
-function Spectrum(){
-	this.name = "spectrum";
+Spectrum = class{
+	name = "spectrum";
 
-	this.draw = function(){
+	draw = () => {
 		push();
-		var spectrum = fourier.analyze();
+		const spectrum = fourier.analyze();
 		noStroke();
 		
 		fill(0,255,0)
-		// for (var i = 0; i< spectrum.length; i++){
-		// 	var x = map(i, 0, spectrum.length, 0, width);
-		// 	var h = -height + map(spectrum[i], 0, 255, height, 0);
-		// 	rect(x, height, width / spectrum.length, h );
-		// }
-		for (var i = 0; i< spectrum.length; i++){
-			var y = map(i, 0, spectrum.length, 0, height);
-			var w = map(spectrum[i], 0, 255, 0, width);
-			var c = map(spectrum[i], 0, 255, 255, 0);
+		for (let i = 0; i< spectrum.length; i++){
+			const y = map(i, 0, spectrum.length, 0, height);
+			const w = map(spectrum[i], 0, 255, 0, width);
+			const c = map(spectrum[i], 0, 255, 255, 0);
 			fill(spectrum[i], c, 0);
 			rect(0, y, w, height / spectrum.length);
 		}

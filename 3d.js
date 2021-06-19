@@ -1,8 +1,8 @@
-function Three(){
+Three = class{
     //vis name
-    this.name = "3D";
+    name = "3D";
 
-    this.draw = function(){
+    draw = () => {
         push();
         noStroke();
         translate(width/2,height/2,0);
@@ -10,7 +10,7 @@ function Three(){
         pointLight(0, 0, 255, 200, 0, 0);
         ambientLight(30);
         fourier.analyze();
-        let bass = fourier.getEnergy("bass");
+        //let bass = fourier.getEnergy("bass");
         let level = amplitude.getLevel();
         rotateX(frameCount * 0.01);
         rotateY(frameCount * 0.01);

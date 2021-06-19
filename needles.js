@@ -1,45 +1,43 @@
-//constructor function to draw a
-function Needles() {
+Needles = class {
 	//name of the visualisation
-	this.name = "needles";
+	name = "needles";
 
 	//how large is the arc of the needle plot.
-	var minAngle = PI + PI / 10;
-	var maxAngle = TWO_PI - PI / 10;
+	minAngle = PI + PI / 10;
+	maxAngle = TWO_PI - PI / 10;
 
-	this.plotsAcross = 2;
-	this.plotsDown = 2;
+	plotsAcross = 2;
+	plotsDown = 2;
 
 	//frquencies used by the energyfunction to retrieve a value
 	//for each plot.
-	this.frequencyBins = ["bass", "lowMid", "highMid", "treble"];
+	frequencyBins = ["bass", "lowMid", "highMid", "treble"];
 
 	//resize the plots sizes when the screen is resized.
-	this.onResize = function() {
+	onResize = () => {
 		this.pad = width / 20;
 		this.plotWidth = (width - this.pad) / this.plotsAcross;
 		this.plotHeight = (height - this.pad) / this.plotsDown;
 		this.dialRadius = (this.plotWidth - this.pad) / 2 - 5;
 	};
 	//call onResize to set initial values when the object is created
-	this.onResize();
 
 	// draw the plots to the screen
-	this.draw = function() {
+	draw = () => {
 		//create an array amplitude values from the fft.
-		var spectrum = fourier.analyze();
+		const spectrum = fourier.analyze();
 		//iterator for selecting frequency bin.
-		var currentBin = 0;
+		let currentBin = 0;
 		push();
 		fill('#f0f2d2');
 		//nested for loop to place plots in 2*2 grid.
-		for (var i = 0; i < this.plotsDown; i++) {
-			for (var j = 0; j < this.plotsAcross; j++) {
+		for (let i = 0; i < this.plotsDown; i++) {
+			for (let j = 0; j < this.plotsAcross; j++) {
 
-				var x = this.pad + j * this.plotWidth;
-				var y = this.pad + i * this.plotHeight;
-				var w = this.plotWidth - this.pad;
-				var h = this.plotHeight - this.pad;
+				const x = this.pad + j * this.plotWidth;
+				const y = this.pad + i * this.plotHeight;
+				const w = this.plotWidth - this.pad;
+				const h = this.plotHeight - this.pad;
 
 				//draw a rectangle at that location and size
 				rect(x, y, w, h);
@@ -47,7 +45,7 @@ function Needles() {
 				//add on the ticks
 				this.ticks(x + w / 2, y + h, this.frequencyBins[currentBin]);
 
-				var energy = fourier.getEnergy(this.frequencyBins[currentBin]);
+				const energy = fourier.getEnergy(this.frequencyBins[currentBin]);
 
 				//add the needle
 				this.needle(energy, x + w / 2, y + h);
@@ -65,16 +63,16 @@ function Needles() {
 	 *@param centreX: central x coordinate of the plot rectangle
 	 *@param bottomY: The bottom y coordinate of the plot rectangle
 	 */
-	this.needle = function(energy, centreX, bottomY) {
+	needle = (energy, centreX, bottomY) => {
 		push();
 		stroke('#333333');
 		//translate so 0 is at the bottom of the needle
 		translate(centreX, bottomY);
 		//map the energy to the angle for the plot
-		theta = map(energy, 0, 255, minAngle, maxAngle);
+		let theta = map(energy, 0, 255, this.minAngle, this.maxAngle);
 		//calculate x and y coorindates from angle for the length of needle
-		var x = this.dialRadius * cos(theta);
-		var y = this.dialRadius * sin(theta);
+		const x = this.dialRadius * cos(theta);
+		const y = this.dialRadius * sin(theta);
 		//draw the needle
 		line(0, 0, x, y);
 		pop();
@@ -86,9 +84,9 @@ function Needles() {
 	 *@param bottomY: The bottom y coordinate of the plot rectangle
 	 *@param freqLabel: Label denoting the frequency of the plot
 	 */
-	this.ticks = function(centreX, bottomY, freqLabel) {
+	ticks = (centreX, bottomY, freqLabel) => {
 		// 8 ticks from pi to 2pi
-		var nextTickAngle = minAngle;
+		let nextTickAngle = this.minAngle;
 		push();
 		stroke('#333333');
 		fill('#333333');
@@ -99,14 +97,14 @@ function Needles() {
 		textSize(12);
 		text(freqLabel, 0, -(this.plotHeight / 2));
 
-		for (var i = 0; i < 9; i++) {
+		for (let i = 0; i < 9; i++) {
 			//for each tick work out the start and end coordinates of
 			//based on its angle from the needle's origin.
-			var x = this.dialRadius * cos(nextTickAngle);
-			var x1 = (this.dialRadius - 5) * cos(nextTickAngle);
+			const x = this.dialRadius * cos(nextTickAngle);
+			const x1 = (this.dialRadius - 5) * cos(nextTickAngle);
 
-			var y = (this.dialRadius) * sin(nextTickAngle);
-			var y1 = (this.dialRadius - 5) * sin(nextTickAngle);
+			const y = (this.dialRadius) * sin(nextTickAngle);
+			const y1 = (this.dialRadius - 5) * sin(nextTickAngle);
 
 			line(x, y, x1, y1);
 			nextTickAngle += PI / 10;
