@@ -9,8 +9,8 @@ let fourier;
 let amplitude;
 let t;
 function preload(){
-	sound = loadSound('assets/IMG_1196.mp4');
-	font = loadFont('assets/Roboto-Regular.ttf');
+	sound = loadSound('assets/sound/IMG_1196.mp4');
+	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 }
 
 function setup(){
