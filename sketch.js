@@ -47,7 +47,7 @@ function setup(){
 	 right = Bodies.rectangle(750,210,20,300,{ isStatic: true })
 	 Composite.add(composite, [ground,top_wall,left,right]);
 	 box_arry = []
-	 num_box = 250;
+	 num_box = 300;
 	 for(let i = 0; i < num_box; i++){
 		box_arry.push(new Physics_box(random(0,width), random(0,height), 20, 20));
 	 }
