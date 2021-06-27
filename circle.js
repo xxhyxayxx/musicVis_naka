@@ -28,8 +28,6 @@ Circle = class {
             t.rotate(step);
             t.push();
             t.fill(amp,c,255);
-            //translate(r * sin(theta), r * cos(theta));
-            //rotate(2*PI);
             t.rect(pi_x, pi_y, 10, height, 5);
             t.pop();
         }

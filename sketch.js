@@ -8,6 +8,7 @@ let sound = null;
 let fourier;
 let amplitude;
 let t;
+let heart;
 
 const Engine = Matter.Engine,
 	  Bodies = Matter.Bodies,
@@ -21,6 +22,7 @@ let box_arry, num_box;
 function preload(){
 	sound = loadSound('assets/sound/stomper_reggae_bit.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
+	heart = loadModel('assets/models/heart.obj',true);
 }
 
 function setup(){
