@@ -14,6 +14,10 @@ let particles = [];
 let x, y, z, pos;
 let r, g, b, c;
 
+var sampleBuffer = [];
+var beatDetect;
+let test_beat
+
 const Engine = Matter.Engine,
 	  Bodies = Matter.Bodies,
 	  Body = Matter.Body,
@@ -33,7 +37,7 @@ function setup(){
 	 background(0);
 	 createCanvas(windowWidth, windowHeight, WEBGL);
 	 textFont(font);
-
+	 frameRate(60);
 	 //for circle.js
 	 t = createGraphics(windowWidth, windowHeight);
 
@@ -66,6 +70,8 @@ function setup(){
 	 vis.add(new Circle());
 	 vis.add(new Three());
 	 vis.add(new Physics());
+
+	 beatDetect = new BeatDetect();
 
 }
 

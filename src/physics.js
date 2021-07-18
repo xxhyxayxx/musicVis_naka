@@ -4,23 +4,12 @@ Physics = class{
 	name = "physics";
 
 	draw = () => {
-		// let level_bar = amplitude.getLevel();
-		// let level_bar_map = map(level_bar, 0, 1, 0, 300);
-		// let level_bar_position = level_bar_map;
-		// this.bar = Bodies.rectangle(0,height,width*2,100, { isStatic: true });
-		// //this.bar.friction = 1;
-		// //this.bar.restitution = 1;
-		// let pos2 = this.bar.position;
-		// let angle2 = this.bar.angle;
-		// Composite.add(composite, this.bar);
-		//
-		// push();
-		// translate(pos2.x,pos2.y);
-		// rotate(angle2);
-		// rectMode(CENTER);
-		// fill(255, 255, 0);
-		// rect(0,0,width*2,100);
-		// pop();
+		// var spectrum = fourier.analyze();
+		// if(beatDetect.detectBeat(spectrum)){
+		// 	fill(255, 0, 0);
+		// 	ellipse(width/2, height/2, 300, 300);
+		// }
+
 		for(let i = 0; i < box_arry.length; i++){
 			const bass = fourier.getEnergy( "bass",0.9 );
 			const mid_high = fourier.getEnergy( "highMid",0.9 );
