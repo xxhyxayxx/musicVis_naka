@@ -10,6 +10,10 @@ let amplitude;
 let t;
 let heart;
 
+let particles = [];
+let x, y, z, pos;
+let r, g, b, c;
+
 const Engine = Matter.Engine,
 	  Bodies = Matter.Bodies,
 	  Body = Matter.Body,
@@ -43,13 +47,13 @@ function setup(){
 	 engine = Engine.create();
 	 composite = engine.world;
 	 Engine.run(engine);
-	 ground = Bodies.rectangle(0, height, width*2, 100, { isStatic: true });
+	 ground = Bodies.rectangle(0, height, width*2, 1, { isStatic: true });
 	 top_wall = Bodies.rectangle(0, 0, width*2, 20, { isStatic: true });
-	 left = Bodies.rectangle(0,0,20,30,{ isStatic: true });
-	 right = Bodies.rectangle(750,210,20,300,{ isStatic: true })
+	 left = Bodies.rectangle(0, height,20, height*2,{ isStatic: true });
+	 right = Bodies.rectangle(width,height,20,height*2,{ isStatic: true })
 	 Composite.add(composite, [ground,top_wall,left,right]);
 	 box_arry = []
-	 num_box = 300;
+	 num_box = width / 4;
 	 for(let i = 0; i < num_box; i++){
 		box_arry.push(new Physics_box(random(0,width), random(0,height), 20, 20));
 	 }
@@ -75,7 +79,7 @@ function draw(){
 }
 
 function mouseClicked(){
-	controls.mousePressed();
+ 	controls.mousePressed();
 }
 
 function keyPressed(){

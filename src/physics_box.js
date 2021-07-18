@@ -10,7 +10,7 @@ Physics_box = class{
 	}
 
 	//draw the wave form to the screen
-	show = () => {
+	show = (color) => {
 		let pos = this.body.position;
 		let angle = this.body.angle;
 
@@ -18,13 +18,14 @@ Physics_box = class{
 		translate(pos.x,pos.y);
 		rotate(angle);
 		rectMode(CENTER);
-		fill(0, 255, 0);
+		fill(255, 255, color);
 		rect(0,0,this.w,this.h);
 		pop();
 	};
 
-	mova = (level) => {
-		Body.applyForce( this.body, {x: this.body.position.x, y: this.body.position.y}, {x: 0, y: level});
+	move = (level) => {
+		Body.applyForce(this.body, {x: this.body.position.x, y: this.body.position.y}, {x: 0, y: level});
+		Body.setVelocity(this.body, {x: random(-4,4), y: random(-4,4)});
 	}
 }
 
