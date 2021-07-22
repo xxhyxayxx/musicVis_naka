@@ -27,8 +27,10 @@ let engine,composite,ground,a,top_wall,left,right;
 
 let box_arry, num_box;
 
+let spectrum, bass, lowMid, mid, highMid;
+
 function preload(){
-	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
+	sound = loadSound('assets/sound/bensound-dreams.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
 }
@@ -73,11 +75,20 @@ function setup(){
 
 	 beatDetect = new BeatDetect();
 
+	angleMode(DEGREES);
+
 }
 
 function draw(){
 	background(0);
 	translate(-width/2,-height/2,0);
+
+	spectrum = fourier.analyze();
+	bass = fourier.getEnergy( "bass",0.9);
+	lowMid = fourier.getEnergy( "lowMid",0.9 );
+	mid = fourier.getEnergy( "mid",0.9 );
+	highMid = fourier.getEnergy( "highMid",0.9 );
+
 	//draw the selected visualisation
 	vis.selectedVisual.draw();
 	//draw the controls on top.

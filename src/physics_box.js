@@ -24,8 +24,11 @@ Physics_box = class{
 	};
 
 	move = (level) => {
-		Body.applyForce(this.body, {x: this.body.position.x, y: this.body.position.y}, {x: 0, y: level});
-		Body.setVelocity(this.body, {x: random(-4,4), y: random(-4,4)});
+		var spectrum = fourier.analyze();
+		if(beatDetect.detectBeat(spectrum)){
+			Body.applyForce(this.body, {x: this.body.position.x, y: this.body.position.y}, {x: 0, y: level});
+			Body.setVelocity(this.body, {x: random(-4,4), y: random(-4,4)});
+		}
 	}
 }
 
