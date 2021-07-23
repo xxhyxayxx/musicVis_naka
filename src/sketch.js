@@ -10,7 +10,6 @@ let amplitude;
 let t;
 let heart;
 
-let particles = [];
 let x, y, z, pos;
 let r, g, b, c;
 
@@ -27,10 +26,12 @@ let engine,composite,ground,a,top_wall,left,right;
 
 let box_arry, num_box;
 
-let spectrum, bass, lowMid, mid, highMid;
+let spectrum, level, bass, lowMid, mid, highMid;
+
+let geometry_arry;
 
 function preload(){
-	sound = loadSound('assets/sound/bensound-dreams.mp3');
+	sound = loadSound('assets/sound/IMG_1196.mp4');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
 }
@@ -64,6 +65,8 @@ function setup(){
 		box_arry.push(new Physics_box(random(0,width), random(0,height), 20, 20));
 	 }
 
+	 geometry();
+
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
 	 vis.add(new Spectrum());
@@ -75,7 +78,7 @@ function setup(){
 
 	 beatDetect = new BeatDetect();
 
-	angleMode(DEGREES);
+	 angleMode(DEGREES);
 
 }
 
@@ -84,6 +87,7 @@ function draw(){
 	translate(-width/2,-height/2,0);
 
 	spectrum = fourier.analyze();
+	level = amplitude.getLevel();
 	bass = fourier.getEnergy( "bass",0.9);
 	lowMid = fourier.getEnergy( "lowMid",0.9 );
 	mid = fourier.getEnergy( "mid",0.9 );
@@ -93,6 +97,18 @@ function draw(){
 	vis.selectedVisual.draw();
 	//draw the controls on top.
 	controls.draw();
+}
+
+function geometry(){
+	geometry_arry = [];
+	for(let i = 0; i < width/80; i++){
+		const step = 100;
+		if(i % 2 === 0){
+			geometry_arry.push(new Geometry((random(-(width/2), 0) / step) * step, (random(-400,400) / step) * step, (random(-500,-1000) / step) * step, random(-85, 85), random(0.5, 2)));
+		}else{
+			geometry_arry.push(new Geometry((random(width/2, 0) / step) * step, (random(-400,400) / step) * step, (random(-500,-1000) / step) * step, random(-85, 85), random(0.5, 2)));
+		}
+	}
 }
 
 function mouseClicked(){

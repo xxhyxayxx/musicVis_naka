@@ -2,8 +2,6 @@ Particle = class{
     constructor() {
         this.pos = createVector(0,0,0);
         this.vel = p5.Vector.random3D().normalize().mult(random(4, 6));
-        //this.c = c;
-        //this.w = random(4, 10);
     }
 
     update_particle = () => {
@@ -11,16 +9,13 @@ Particle = class{
     }
 
     show_particle = () => {
-        // noStroke();
-        // fill("rgba(255, 255, 255, 0.08)");
-        //
-        // ellipse(this.pos.x, this.pos.y, 20);
-
         noStroke();
         fill(255);
         push();
+        rotateZ(-90);
+        rotateY(90);
         translate(this.pos.x, this.pos.y, this.pos.z);
-        sphere(10);
+        plane(200,3);
 
         pop();
     }
