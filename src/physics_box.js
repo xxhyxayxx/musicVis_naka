@@ -1,33 +1,46 @@
-//draw the waveform to the screen
 Physics_box = class{
-	constructor(x,y,w,h) {
-		this.body = Bodies.rectangle(x,y,w,h);
-		this.body.friction = 1;
-		this.body.restitution = 1;
-		this.w = w;
-		this.h = h;
-		Composite.add(composite, this.body);
+	constructor(x,y,r) {
+		this.body = Bodies.circle(x, y, r);
+		this.body.friction = 0.3;
+		this.body.restitution = 0.5;
+		this.r = r;
+		Composite.add(world, this.body);
+
 	}
 
-	//draw the wave form to the screen
-	show = (color) => {
-		let pos = this.body.position;
-		let angle = this.body.angle;
-
+	show = (color, color2) => {
 		push();
-		translate(pos.x,pos.y);
-		rotate(angle);
-		rectMode(CENTER);
-		fill(255, 255, color);
-		rect(0,0,this.w,this.h);
+		stroke(255, color2, color);
+		noFill();
+		this.draw_body(this.body);
 		pop();
-	};
+	}
 
-	move = (level) => {
-		var spectrum = fourier.analyze();
-		if(beatDetect.detectBeat(spectrum)){
-			Body.applyForce(this.body, {x: this.body.position.x, y: this.body.position.y}, {x: 0, y: level});
-			Body.setVelocity(this.body, {x: random(-4,4), y: random(-4,4)});
+	scale = (level) => {
+		if(this.body.circleRadius > 10 && this.body.circleRadius < 50 && detect){
+			Matter.Body.scale(this.body, level, level);
+		}else if(this.body.circleRadius > 50 && detect){
+			Matter.Body.scale(this.body, 0.8, 0.8);
+		}else if(this.body.circleRadius < 10 && detect){
+			Matter.Body.scale(this.body, 1.2, 1.2);
+		}
+	}
+
+	draw_vertices = (vertices) => {
+		beginShape();
+		for (let i = 0; i < vertices.length; i++) {
+			vertex(vertices[i].x, vertices[i].y);
+		}
+		endShape(CLOSE);
+	}
+
+	draw_body = (body) => {
+		if (body.parts && body.parts.length > 1) {
+			for (let p = 1; p < body.parts.length; p++) {
+				this.draw_vertices(body.parts[p].vertices)
+			}
+		} else {
+			this.draw_vertices(body.vertices);
 		}
 	}
 }

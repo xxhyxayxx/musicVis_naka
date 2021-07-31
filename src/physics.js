@@ -4,15 +4,24 @@ Physics = class{
 	name = "physics";
 
 	draw = () => {
-
-		for(let i = 0; i < box_arry.length; i++){
-			let test = -0.01;
-			box_arry[i].show();
-			var spectrum = fourier.analyze();
-			if(beatDetect.detectBeat(spectrum)){
-				box_arry[i].move(test);
+		detect = !!beatDetect.detectBeat(spectrum);
+		for(let i = 0; i < boxes.length; i++){
+			let size = map(wave[i], -1, 1, 0.8, 1.2);
+			let test;
+			let color = map(bass, 0, 255, 0, 255);
+			let color2 = map(highMid, 0, 255, 0, 255);
+			if (sound.isPlaying()) {
+				test = size
+			} else {
+				test = 1
 			}
+			boxes[i].show(color, color2);
+			boxes[i].scale(test);
 		}
+		noStroke();
+		fill(0);
+		rectMode(CENTER);
+		rect(ground.position.x, ground.position.y, width*2, 10);
 
 	};
 }

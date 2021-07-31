@@ -33,7 +33,8 @@ BeatDetect = class{
             varianceSum += sampleBuffer[i] - sampleAverage;
         }
         let variance = varianceSum/sampleBuffer.length;
-        let m = -0.15 / (25-200);
+        //let m = -0.15 / (25-200);
+        let m = -0.08 / (25-200);
         let b = 1 + (m * 200);
         return (m * variance) + b;
     }

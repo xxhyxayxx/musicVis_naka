@@ -13,7 +13,7 @@ Three = class{
         pointLight(255, 0, 0, -200, 0, 0);
         pointLight(0, 0, 255, 200, 0, 0);
         push();
-        translate(0,0,-300);
+        translate(0,0,-200);
         rotateX(frameCount * 1);
         rotateY(frameCount * 1);
         ambientMaterial(250);
