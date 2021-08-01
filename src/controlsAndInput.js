@@ -13,8 +13,8 @@ ControlsAndInput = class{
 		//check if the playback button has been clicked
 		//if not make the visualisation fullscreen
 		if(!this.playbackButton.hitCheck()){
-			const fs = fullscreen();
-			fullscreen(!fs);
+			//const fs = fullscreen();
+			//fullscreen(!fs);
 		}
 
 	};

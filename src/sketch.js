@@ -31,17 +31,20 @@ let spectrum, wave, level, bass, lowMid, mid, highMid, peakDetect;
 
 let geometry_arry;
 
-let test;
-
 let playing = false;
 
 let boxes=[], detect;
 
 let roundSize = 15;
 
+var point_curve = 5;
+var vertex_curve = 10;
+
+let gui;
+
 
 function preload(){
-	sound = loadSound('assets/sound/bensound-dubstep.mp3');
+	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
 }
@@ -76,6 +79,11 @@ function setup(){
 	 beatDetect = new BeatDetect();
 
 	 angleMode(DEGREES);
+
+	// sliderRange(0, 12, 1);
+	// gui = createGui('p5.gui');
+	// gui.addGlobals('point_curve', 'vertex_curve');
+
 
 }
 

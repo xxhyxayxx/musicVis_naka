@@ -3,14 +3,15 @@ Circle = class {
     name = "circle";
 
     draw = () => {
+
         t.background(0);
 
         t.push();
         t.translate(width/2, height/2);
 
         //curve function
-        this.curve(bass, point, 5, 130);
-        this.curve(highMid, vertex, 10, 130);
+        this.curve(bass, point, point_curve, 130);
+        this.curve(highMid, vertex, vertex_curve, 130);
 
         //bar function
         this.bar(spectrum, bass);
