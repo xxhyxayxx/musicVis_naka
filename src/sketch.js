@@ -42,11 +42,20 @@ var vertex_curve = 10;
 
 let gui;
 
+let rere;
+
+let songs = []
+
+let sound2, sound3;
+
 
 function preload(){
 	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
+	sound2 = loadSound('assets/sound/bensound-dreams.mp3');
+	sound3 = loadSound('assets/sound/bensound-dubstep.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
+	songs.push(sound,sound2,sound3);
 }
 
 function setup(){
@@ -115,7 +124,7 @@ function physics(){
 	var options = {
 		isStatic: true
 	}
-	ground = Bodies.rectangle(200, height, width*2, 10, options);
+	ground = Bodies.rectangle(200, height, width*2, 120, options);
 	top_wall = Bodies.rectangle(0, 0, width*2, 20, options);
 	left = Bodies.rectangle(0, height,20, height*2,options);
 	right = Bodies.rectangle(width,height,20,height*2,options)

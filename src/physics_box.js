@@ -1,8 +1,8 @@
 Physics_box = class{
 	constructor(x,y,r) {
 		this.body = Bodies.circle(x, y, r);
-		this.body.friction = 0.3;
-		this.body.restitution = 0.5;
+		this.body.friction = 0;
+		this.body.restitution = 0.7;
 		this.r = r;
 		Composite.add(world, this.body);
 

@@ -17,6 +17,13 @@ ControlsAndInput = class{
 			//fullscreen(!fs);
 		}
 
+		this.playbackButton.backHitCheck()
+
+		if(this.playbackButton.nextHitCheck()){
+			console.log(true);
+		}
+
+
 	};
 
 	//responds to keyboard presses
@@ -41,12 +48,12 @@ ControlsAndInput = class{
 		strokeWeight(2);
 		textSize(34);
 
-		//playback button 
 		this.playbackButton.draw();
+
 		//only draw the menu if menu displayed is set to true.
 		if(this.menuDisplayed){
 
-			text("Select a visualisation:", 100, 30);
+			//text("Select a visualisation:", 100, 30);
 			this.menu();
 		}	
 		pop();
@@ -56,10 +63,23 @@ ControlsAndInput = class{
 	menu = () => {
 		//draw out menu items for each visualisation
 		//???
+		// push();
+		// fill(255,255,255,50);
+		// noStroke();
+		// rect(0,0,width/6,height);
+		// pop();
 		for(let i = 0; i < vis.visuals.length; i++){
+			// let button;
+			// button = createButton(vis.visuals[i].name, vis.visuals[i].name);
+			// button.position(20, 100 + i*50);
+		    // button.mousePressed(()  => this.test(i));
 			text((i + 1) + ":" + vis.visuals[i].name, 100, 70 + i * 50);
 		}
 	};
+
+	test = (num) => {
+		vis.selectVisual(vis.visuals[num].name);
+	}
 }
 
 
