@@ -6,23 +6,25 @@ Three = class{
         push();
         background(0);
         noStroke();
-        //change the position of light
-        let locX = mouseX - width / 2;
-        let locY = mouseY - height / 2;
-        translate(width/2,height/2,-100);
+        let level_map = map(level, 0, 1, 0, 50);
+        translate(width/2,height/2,0);
         //add lighting
-        pointLight(255, 0, 0, -250, 0, 0);
-        pointLight(0, 0, 255, 250, 0, 0);
-        pointLight(0, 0, 255, 0, -200, 0);
-        pointLight(255, 0, 0, locX, locY, 0);
-        let level = amplitude.getLevel();
+        ambientLight(25);
+        pointLight(255, 0, 0, -200, 0, 0);
+        pointLight(0, 0, 255, 200, 0, 0);
         push();
-        rotateX(frameCount * 0.01);
-        rotateY(frameCount * 0.01);
+        translate(0,0,-200);
+        rotateX(frameCount * 1);
+        rotateY(frameCount * 1);
         ambientMaterial(250);
-        scale(1.5+(level/0.1));
+        scale(1.5+(level_map*0.1));
         model(heart);
         pop();
+
+        for(let i = 0; i < geometry_arry.length; i++){
+            geometry_arry[i].show_geometry();
+        }
+
         pop();
     }
 }

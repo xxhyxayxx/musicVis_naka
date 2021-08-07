@@ -8,10 +8,9 @@ PlaybackButton = class{
 
 	//flag to determine whether to play or pause after button click and
 	//to determine which icon to draw
-	playing = false;
 
 	draw = () => {
-		if(this.playing){
+		if(playing){
 			rect(this.x, this.y, this.width/2 - 2, this.height);
 			rect(this.x + (this.width/2 + 2), this.y, this.width/2 - 2, this.height);
 		}
@@ -30,7 +29,7 @@ PlaybackButton = class{
   			} else {
     			sound.loop();
   			}
-  			this.playing = !this.playing;
+  			playing = !playing;
   			return true;
 		}
 			return false;
