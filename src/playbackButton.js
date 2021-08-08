@@ -1,22 +1,22 @@
 //displays and handles clicks on the playback button.
 PlaybackButton = class{
-	
-	x = width/2;
-	y = height-40;
-	width = 20;
-	height = 20;
 
-	backX = width/2-60;
-	backY = height-40;
+	x=65;
+	y=35;
+	width = 28;
+	height = 28;
+
+	backX = 20;
+	backY = 40;
 	backWidth = 20;
 	backHeight = 20;
 
-	nextX = width/2+70;
-	nextY = height - 40;
+	nextX= 115;
+	nextY=40;
 	nextWidth = 20;
 	nextHeight = 20;
 
-	num = 2;
+	num = 0;
 
 	//flag to determine whether to play or pause after button click and
 	//to determine which icon to draw
@@ -38,8 +38,8 @@ PlaybackButton = class{
 		}
 
 		push();
-		rect(this.nextX, this.nextY, this.nextWidth-15, this.nextHeight);
-		triangle(this.nextX-15, this.nextY+this.backHeight, this.nextX - 19 + this.nextWidth, this.nextY + this.nextHeight/2, this.nextX-15, this.nextY);
+		rect(this.nextX+15, this.nextY, this.nextWidth-15, this.nextHeight);
+		triangle(this.nextX, this.nextY+this.backHeight, this.nextX - 5 + this.nextWidth, this.nextY + this.nextHeight/2, this.nextX, this.nextY);
 		pop();
 	};
 
@@ -50,7 +50,6 @@ PlaybackButton = class{
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
 			if (songs[this.num].isPlaying()) {
     			songs[this.num].pause();
-
   			} else {
     			songs[this.num].loop();
   			}
@@ -62,8 +61,8 @@ PlaybackButton = class{
 
 	backHitCheck = () => {
 		if(mouseX > this.backX && mouseX < this.backX + this.backWidth && mouseY > this.backY && mouseY < this.backY + this.backHeight){
-			console.log(songs[this.num]);
-			console.log(this.num);
+			// console.log(songs[this.num]);
+			// console.log(this.num);
 			if(this.num > 0 && playing){
 				songs[this.num].stop();
 				this.num --;
@@ -74,14 +73,7 @@ PlaybackButton = class{
 				this.num --;
 				songs[this.num].loop();
 			}
-			// else if(this.num === 0){
-			// 	songs[this.num].stop();
-			// 	this.num = 2;
-			// 	songs[this.num].loop();
-			// }
-			return true;
 		}
-		return false;
 	};
 
 	nextHitCheck = () => {
@@ -96,15 +88,7 @@ PlaybackButton = class{
 				this.num ++;
 				songs[this.num].loop();
 			}
-			// else if(this.num === 2){
-			// 	songs[this.num].stop();
-			// 	this.num = 0;
-			// 	songs[this.num].loop();
-			// }
-			console.log(this.num);
-			return true;
 		}
-		return false;
 	}
 
 }

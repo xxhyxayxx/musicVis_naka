@@ -48,6 +48,8 @@ let songs = []
 
 let sound2, sound3;
 
+let sel;
+
 
 function preload(){
 	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
@@ -93,6 +95,13 @@ function setup(){
 	// gui = createGui('p5.gui');
 	// gui.addGlobals('point_curve', 'vertex_curve');
 
+	sel = createSelect();
+	sel.position(width-330, 40);
+	for(let i = 0; i < vis.visuals.length; i++){
+		sel.option(i+" : "+vis.visuals[i].name,[i]);
+	}
+	sel.changed(controls.menu);
+
 
 }
 
@@ -124,7 +133,7 @@ function physics(){
 	var options = {
 		isStatic: true
 	}
-	ground = Bodies.rectangle(200, height, width*2, 120, options);
+	ground = Bodies.rectangle(200, height, width*2, 10, options);
 	top_wall = Bodies.rectangle(0, 0, width*2, 20, options);
 	left = Bodies.rectangle(0, height,20, height*2,options);
 	right = Bodies.rectangle(width,height,20,height*2,options)

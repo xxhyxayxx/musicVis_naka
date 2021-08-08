@@ -1,8 +1,11 @@
 //Constructor function to handle the onscreen menu, keyboard and mouse
 //controls
 ControlsAndInput = class{
+	sel;
 	
 	menuDisplayed = false;
+
+	text = 'Full Screen Mode'
 	
 	//playback button displayed in the top left of the screen
 	playbackButton = new PlaybackButton();
@@ -12,16 +15,13 @@ ControlsAndInput = class{
 		//???
 		//check if the playback button has been clicked
 		//if not make the visualisation fullscreen
-		if(!this.playbackButton.hitCheck()){
-			//const fs = fullscreen();
-			//fullscreen(!fs);
-		}
+		this.playbackButton.hitCheck();
 
-		this.playbackButton.backHitCheck()
+		this.playbackButton.backHitCheck();
 
-		if(this.playbackButton.nextHitCheck()){
-			console.log(true);
-		}
+		this.playbackButton.nextHitCheck()
+
+		this.fullScreenHitcheck();
 
 
 	};
@@ -55,7 +55,18 @@ ControlsAndInput = class{
 
 			//text("Select a visualisation:", 100, 30);
 			this.menu();
-		}	
+		}
+
+		push();
+		textSize(15);
+		text(this.text, width-160, 53);
+		noFill();
+		stroke(255);
+		strokeWeight(1);
+		rect(width-175, 30, 145, 38, 50);
+		pop();
+
+
 		pop();
 
 	};
@@ -63,22 +74,29 @@ ControlsAndInput = class{
 	menu = () => {
 		//draw out menu items for each visualisation
 		//???
-		// push();
-		// fill(255,255,255,50);
-		// noStroke();
-		// rect(0,0,width/6,height);
-		// pop();
-		for(let i = 0; i < vis.visuals.length; i++){
-			// let button;
-			// button = createButton(vis.visuals[i].name, vis.visuals[i].name);
-			// button.position(20, 100 + i*50);
-		    // button.mousePressed(()  => this.test(i));
-			text((i + 1) + ":" + vis.visuals[i].name, 100, 70 + i * 50);
-		}
+
+		let value = sel.value();
+		vis.selectVisual(vis.visuals[value].name);
+
+		// for(let i = 0; i < vis.visuals.length; i++){
+		// 	// let button;
+		// 	// button = createButton(vis.visuals[i].name, vis.visuals[i].name);
+		// 	// button.position(20, 100 + i*50);
+		//     // button.mousePressed(()  => this.test(i));
+		// 	text((i + 1) + ":" + vis.visuals[i].name, 100, 70 + i * 50);
+		// }
 	};
 
-	test = (num) => {
-		vis.selectVisual(vis.visuals[num].name);
+	fullScreenHitcheck = () => {
+		if(mouseX > width-175 && mouseX < width-175 + 145 && mouseY > 30 && mouseY < 30 + 38) {
+			const fs = fullscreen();
+			fullscreen(!fs);
+			if(!fs){
+				this.text = 'Exit Full Screen'
+			}else{
+				this.text = 'Full Screen Mode'
+			}
+		}
 	}
 }
 
