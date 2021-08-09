@@ -26,20 +26,6 @@ ControlsAndInput = class{
 
 	};
 
-	//responds to keyboard presses
-	//@param keycode the ascii code of the keypressed
-	keyPressed = (keycode) => {
-		console.log(keycode);
-		if(keycode === 32){
-			this.menuDisplayed = !this.menuDisplayed;
-		}
-
-		if(keycode > 48 && keycode < 58){
-			const visNumber = keycode - 49;
-			vis.selectVisual(vis.visuals[visNumber].name);
-		}
-	};
-
 	//draws the playback button and potentially the menu
 	draw = () => {
 		push();
@@ -72,19 +58,8 @@ ControlsAndInput = class{
 	};
 
 	menu = () => {
-		//draw out menu items for each visualisation
-		//???
-
 		let value = sel.value();
 		vis.selectVisual(vis.visuals[value].name);
-
-		// for(let i = 0; i < vis.visuals.length; i++){
-		// 	// let button;
-		// 	// button = createButton(vis.visuals[i].name, vis.visuals[i].name);
-		// 	// button.position(20, 100 + i*50);
-		//     // button.mousePressed(()  => this.test(i));
-		// 	text((i + 1) + ":" + vis.visuals[i].name, 100, 70 + i * 50);
-		// }
 	};
 
 	fullScreenHitcheck = () => {

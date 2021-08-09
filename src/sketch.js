@@ -80,9 +80,6 @@ function setup(){
 
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
-	 vis.add(new Spectrum());
-	 vis.add(new WavePattern());
-	 vis.add(new Needles());
 	 vis.add(new Circle());
 	 vis.add(new Three());
 	 vis.add(new Physics());
