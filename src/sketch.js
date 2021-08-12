@@ -157,10 +157,6 @@ function mouseClicked(){
  	controls.mousePressed();
 }
 
-function keyPressed(){
-	controls.keyPressed(keyCode);
-}
-
 //when the window has been resized. Resize canvas to fit
 //if the visualisation needs to be resized call its onResize method
 function windowResized(){
