@@ -42,11 +42,22 @@ var vertex_curve = 10;
 
 let gui;
 
+let rere;
+
+let songs = []
+
+let sound2, sound3;
+
+let sel;
+
 
 function preload(){
 	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
+	sound2 = loadSound('assets/sound/bensound-dreams.mp3');
+	sound3 = loadSound('assets/sound/bensound-dubstep.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
+	songs.push(sound,sound2,sound3);
 }
 
 function setup(){
@@ -69,9 +80,6 @@ function setup(){
 
 	 //create a new visualisation container and add visualisations
 	 vis = new Visualisations();
-	 vis.add(new Spectrum());
-	 vis.add(new WavePattern());
-	 vis.add(new Needles());
 	 vis.add(new Circle());
 	 vis.add(new Three());
 	 vis.add(new Physics());
@@ -83,6 +91,13 @@ function setup(){
 	// sliderRange(0, 12, 1);
 	// gui = createGui('p5.gui');
 	// gui.addGlobals('point_curve', 'vertex_curve');
+
+	sel = createSelect();
+	sel.position(width-330, 40);
+	for(let i = 0; i < vis.visuals.length; i++){
+		sel.option(i+" : "+vis.visuals[i].name,[i]);
+	}
+	sel.changed(controls.menu);
 
 
 }

@@ -3,7 +3,7 @@ class Visualisations{
 	//array to store visualisations
 	visuals = [];
 	//currently selected vis. set to null until vis loaded in
-	selectedVisual = null;
+	//selectedVisual = null;
 
 	//add a new visualisation to the array
 	//@param vis: a visualisation object
