@@ -33,6 +33,6 @@
 * 3d.js
 * circle.js
 * physics.js
-* physics_box.js
+* physics_circle.js
 
 

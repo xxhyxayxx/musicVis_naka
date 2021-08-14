@@ -4,49 +4,27 @@ let controls = null;
 let vis = null;
 //variable for the p5 sound object
 let sound = null;
-//variable for p5 fast fourier transform
+let sound2 = null;
+let sound3 = null;
+
 let fourier;
 let amplitude;
 let t;
 let heart;
 
-let x, y, z, pos;
-let r, g, b, c;
+let sampleBuffer = [];
 
-var sampleBuffer = [];
-var beatDetect;
-let test_beat
-
-const Engine = Matter.Engine,
-	//Render = Matter.Render,
-	Runner = Matter.Runner,
-	Bodies = Matter.Bodies,
-	Composite = Matter.Composite;
-
-let engine,composite,ground,a,top_wall,left,right;
-
-let num_box;
-
-let spectrum, wave, level, bass, lowMid, mid, highMid, peakDetect;
-
-let geometry_arry;
+let spectrum, wave, level, bass, lowMid, mid, highMid;
 
 let playing = false;
 
-let boxes=[], detect;
-
-let roundSize = 15;
-
-var point_curve = 5;
-var vertex_curve = 10;
+let boxes=[];
 
 let gui;
 
-let rere;
+let songs = [];
 
-let songs = []
-
-let sound2, sound3;
+let geometry_arry = [];
 
 let sel;
 
@@ -61,32 +39,31 @@ function preload(){
 }
 
 function setup(){
-	 background(0);
-	 createCanvas(windowWidth, windowHeight, WEBGL);
-	 textFont(font);
-	 //for circle.js
-	 t = createGraphics(windowWidth, windowHeight);
+	background(0);
+	createCanvas(windowWidth, windowHeight, WEBGL);
+	textFont(font);
+	//for circle.js
+	t = createGraphics(windowWidth, windowHeight);
 
-	 controls = new ControlsAndInput();
+	controls = new ControlsAndInput();
 
-	 //instantiate the fft object
-	 fourier = new p5.FFT();
-	 amplitude = new p5.Amplitude();
-	 peakDetect = new p5.PeakDetect();
+	//instantiate the fft object
+	fourier = new p5.FFT();
+	amplitude = new p5.Amplitude();
 
-	 physics();
+	const physics = new Physics();
+	physics.setup();
 
-	 geometry();
+	const geometry = new Three();
+	geometry.setup();
 
-	 //create a new visualisation container and add visualisations
-	 vis = new Visualisations();
-	 vis.add(new Circle());
-	 vis.add(new Three());
-	 vis.add(new Physics());
+	//create a new visualisation container and add visualisations
+	vis = new Visualisations();
+	vis.add(new Circle());
+	vis.add(new Three());
+	vis.add(new Physics());
 
-	 beatDetect = new BeatDetect();
-
-	 angleMode(DEGREES);
+	angleMode(DEGREES);
 
 	// sliderRange(0, 12, 1);
 	// gui = createGui('p5.gui');
@@ -118,43 +95,11 @@ function draw(){
 	vis.selectedVisual.draw();
 	//draw the controls on top.
 	controls.draw();
-	beatDetect = new BeatDetect();
-}
 
-function physics(){
-	//for physics.js
-	engine = Engine.create();
-	world = engine.world;
-	runner = Runner.create();
-	Runner.run(runner, engine);
-	var options = {
-		isStatic: true
-	}
-	ground = Bodies.rectangle(200, height, width*2, 10, options);
-	top_wall = Bodies.rectangle(0, 0, width*2, 20, options);
-	left = Bodies.rectangle(0, height,20, height*2,options);
-	right = Bodies.rectangle(width,height,20,height*2,options)
-	Composite.add(world, [ground, top_wall, left, right]);
-	num_box = width / 10;
-	for(let i = 0; i < num_box; i++){
-		boxes.push(new Physics_box(random(0,width), random(0,height), roundSize));
-	}
-}
-
-function geometry(){
-	geometry_arry = [];
-	for(let i = 0; i < width/80; i++){
-		const step = 100;
-		if(i % 2 === 0){
-			geometry_arry.push(new Geometry((random(-(width/2), 0) / step) * step, (random(-400,400) / step) * step, (random(-350,-800) / step) * step, random(-85, 85), random(0.5, 2)));
-		}else{
-			geometry_arry.push(new Geometry((random(width/2, 0) / step) * step, (random(-400,400) / step) * step, (random(-350,-800) / step) * step, random(-85, 85), random(0.5, 2)));
-		}
-	}
 }
 
 function mouseClicked(){
- 	controls.mousePressed();
+	controls.mousePressed();
 }
 
 //when the window has been resized. Resize canvas to fit

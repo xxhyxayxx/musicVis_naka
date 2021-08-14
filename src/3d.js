@@ -2,6 +2,17 @@ Three = class{
     //vis name
     name = "3D";
 
+    setup = () => {
+        for(let i = 0; i < width/80; i++){
+            const step = 100;
+            if(i % 2 === 0){
+                geometry_arry.push(new Geometry((random(-(width/2), 0) / step) * step, (random(-400,400) / step) * step, (random(-350,-800) / step) * step, random(-85, 85), random(0.5, 2)));
+            }else{
+                geometry_arry.push(new Geometry((random(width/2, 0) / step) * step, (random(-400,400) / step) * step, (random(-350,-800) / step) * step, random(-85, 85), random(0.5, 2)));
+            }
+        }
+    }
+
     draw = () => {
         push();
         background(0);

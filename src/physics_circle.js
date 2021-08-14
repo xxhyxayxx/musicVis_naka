@@ -1,10 +1,11 @@
-Physics_box = class{
-	constructor(x,y,r) {
-		this.body = Bodies.circle(x, y, r);
+Physics_circle = class{
+	constructor(x,y,r,world) {
+		this.body = Matter.Bodies.circle(x, y, r);
 		this.body.friction = 0;
 		this.body.restitution = 0.7;
 		this.r = r;
-		Composite.add(world, this.body);
+		this.world = world
+		Matter.Composite.add(world, this.body);
 
 	}
 
@@ -17,11 +18,11 @@ Physics_box = class{
 	}
 
 	scale = (level) => {
-		if(this.body.circleRadius > 10 && this.body.circleRadius < 50 && detect){
+		if(this.body.circleRadius > 10 && this.body.circleRadius < 50){
 			Matter.Body.scale(this.body, level, level);
-		}else if(this.body.circleRadius > 50 && detect){
+		}else if(this.body.circleRadius > 50){
 			Matter.Body.scale(this.body, 0.8, 0.8);
-		}else if(this.body.circleRadius < 10 && detect){
+		}else if(this.body.circleRadius < 10){
 			Matter.Body.scale(this.body, 1.2, 1.2);
 		}
 	}

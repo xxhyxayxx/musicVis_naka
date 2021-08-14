@@ -38,8 +38,6 @@ ControlsAndInput = class{
 
 		//only draw the menu if menu displayed is set to true.
 		if(this.menuDisplayed){
-
-			//text("Select a visualisation:", 100, 30);
 			this.menu();
 		}
 

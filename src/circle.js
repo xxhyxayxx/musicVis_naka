@@ -9,6 +9,9 @@ Circle = class {
         t.push();
         t.translate(width/2, height/2);
 
+        let point_curve = 5;
+        let vertex_curve = 10;
+
         //curve function
         this.curve(bass, point, point_curve, 130);
         this.curve(highMid, vertex, vertex_curve, 130);

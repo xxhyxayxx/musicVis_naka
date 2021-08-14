@@ -1,20 +1,26 @@
 //displays and handles clicks on the playback button.
 PlaybackButton = class{
 
-	x=65;
-	y=35;
-	width = 28;
-	height = 28;
+	playButton= {
+		x:65,
+		y:35,
+		w:28,
+		h:28
+	}
 
-	backX = 20;
-	backY = 40;
-	backWidth = 20;
-	backHeight = 20;
+	backButton= {
+		x: 20,
+		y: 40,
+		w: 20,
+		h: 20
+	}
 
-	nextX= 115;
-	nextY=40;
-	nextWidth = 20;
-	nextHeight = 20;
+	nextButton = {
+		x: 115,
+		y:40,
+		w : 20,
+		h : 20
+	}
 
 	num = 0;
 
@@ -22,32 +28,36 @@ PlaybackButton = class{
 	//to determine which icon to draw
 
 	draw = () => {
+		const play = this.playButton;
+		const back = this.backButton;
+		const next = this.nextButton;
+
 		push();
 
-		rect(this.backX, this.backY, this.backWidth-15, this.backHeight);
-		triangle(this.backX+20, this.backY+this.backHeight, this.backX -15 + this.backWidth, this.backY + this.backHeight/2, this.backX+20, this.backY);
+		rect(back.x, back.y, back.w-15, back.h);
+		triangle(back.x+20, next.y+back.h, back.x -15 + back.w, back.y + back.h/2, back.x+20, back.y);
 		pop();
 
 		if(playing){
-			rect(this.x, this.y, this.width/2 - 2, this.height);
-			rect(this.x + (this.width/2 + 2), this.y, this.width/2 - 2, this.height);
+			rect(play.x, play.y, play.w/2 - 2, play.h);
+			rect(play.x + (play.w/2 + 2), play.y, play.w/2 - 2, play.h);
 		}
 		else{	
-			triangle(this.x, this.y, this.x + this.width, this.y + this.height/2, this.x, this.y+this.height);
-
+			triangle(play.x, play.y, play.x + play.w, play.y + play.h/2, play.x, play.y+play.h);
 		}
 
 		push();
-		rect(this.nextX+15, this.nextY, this.nextWidth-15, this.nextHeight);
-		triangle(this.nextX, this.nextY+this.backHeight, this.nextX - 5 + this.nextWidth, this.nextY + this.nextHeight/2, this.nextX, this.nextY);
+		rect(next.x+15, next.y, next.w-15, next.h);
+		triangle(next.x, next.y+back.h, next.x - 5 + next.w, next.y + next.h/2, next.x, next.y);
 		pop();
 	};
 
 	//checks for clicks on the button, starts or pauses playback.
 	//@returns true if clicked false otherwise.
 	hitCheck = () => {
-		//console.log(songs[this.num].test);
-		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
+		const play = this.playButton;
+
+		if(mouseX > play.x && mouseX < play.x + play.w && mouseY > play.y && mouseY < play.y + play.h){
 			if (songs[this.num].isPlaying()) {
     			songs[this.num].pause();
   			} else {
@@ -60,9 +70,9 @@ PlaybackButton = class{
 	};
 
 	backHitCheck = () => {
-		if(mouseX > this.backX && mouseX < this.backX + this.backWidth && mouseY > this.backY && mouseY < this.backY + this.backHeight){
-			// console.log(songs[this.num]);
-			// console.log(this.num);
+		const back = this.backButton;
+
+		if(mouseX > back.x && mouseX < back.x + back.w && mouseY > back.y && mouseY < back.y + back.h){
 			if(this.num > 0 && playing){
 				songs[this.num].stop();
 				this.num --;
@@ -77,7 +87,9 @@ PlaybackButton = class{
 	};
 
 	nextHitCheck = () => {
-		if(mouseX > this.nextX && mouseX < this.nextX + this.nextWidth && mouseY > this.nextY && mouseY < this.nextY + this.nextHeight){
+		const next = this.nextButton;
+
+		if(mouseX > next.x && mouseX < next.x + next.w && mouseY > next.y && mouseY < next.y + next.h){
 			if(this.num < 2 && playing){
 				songs[this.num].stop();
 				this.num ++;
