@@ -12,9 +12,7 @@ ControlsAndInput = class{
 
 	//make the window fullscreen or revert to windowed
 	mousePressed = () => {
-		//???
-		//check if the playback button has been clicked
-		//if not make the visualisation fullscreen
+		//check if the play button, next button, back button, and full-screen button have been clicked
 		this.playbackButton.hitCheck();
 
 		this.playbackButton.backHitCheck();
@@ -22,8 +20,6 @@ ControlsAndInput = class{
 		this.playbackButton.nextHitCheck()
 
 		this.fullScreenHitcheck();
-
-
 	};
 
 	//draws the playback button and potentially the menu
@@ -41,6 +37,7 @@ ControlsAndInput = class{
 			this.menu();
 		}
 
+		//draw the full-screen button
 		push();
 		textSize(15);
 		text(this.text, width-160, 53);
@@ -49,17 +46,18 @@ ControlsAndInput = class{
 		strokeWeight(1);
 		rect(width-175, 30, 145, 38, 50);
 		pop();
-
-
 		pop();
 
 	};
 
+	//the music visualizer screen will switch depending on the value selected in the select box.
 	menu = () => {
 		let value = sel.value();
 		vis.selectVisual(vis.visuals[value].name);
 	};
 
+	//When the full-screen button is clicked, the screen will go into full-screen mode,
+	//and the text on the button will also change.
 	fullScreenHitcheck = () => {
 		if(mouseX > width-175 && mouseX < width-175 + 145 && mouseY > 30 && mouseY < 30 + 38) {
 			const fs = fullscreen();

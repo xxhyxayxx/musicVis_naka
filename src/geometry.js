@@ -7,7 +7,10 @@ Geometry = class{
         this.size = size;
     }
 
+    //create a geometry based on the arguments.
     show_geometry = () => {
+        //the rotation speed of the Z axis changes depending on the bass of the song.
+        //scale by the level of the song.
         let level_map = map(level, 0, 1, 0, 35);
         push();
         translate(this.x, this.y, this.z);

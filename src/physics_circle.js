@@ -1,14 +1,14 @@
-Physics_circle = class{
+Physics_circle = class {
+	//based on the arguments, add the circles to the world in the physics engine.
 	constructor(x,y,r,world) {
 		this.body = Matter.Bodies.circle(x, y, r);
 		this.body.friction = 0;
 		this.body.restitution = 0.7;
-		this.r = r;
 		this.world = world
 		Matter.Composite.add(world, this.body);
-
 	}
 
+	//draw the vertex shape created by draw_body function
 	show = (color, color2) => {
 		push();
 		stroke(255, color2, color);
@@ -17,6 +17,10 @@ Physics_circle = class{
 		pop();
 	}
 
+	//each radius of the circle scales with the level of the song.
+	//if each circle keeps scaling,
+	//it will become too large to fit on the screen
+	//so that it will become larger or smaller depending on certain conditions.
 	scale = (level) => {
 		if(this.body.circleRadius > 10 && this.body.circleRadius < 50){
 			Matter.Body.scale(this.body, level, level);
@@ -27,6 +31,8 @@ Physics_circle = class{
 		}
 	}
 
+	//draw_verticies and draw_body function were implemented by referring to this site.
+	//https://github.com/b-g/p5-matter-examples
 	draw_vertices = (vertices) => {
 		beginShape();
 		for (let i = 0; i < vertices.length; i++) {

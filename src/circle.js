@@ -3,18 +3,18 @@ Circle = class {
     name = "circle";
 
     draw = () => {
-
         t.background(0);
 
         t.push();
         t.translate(width/2, height/2);
 
-        let point_curve = 5;
-        let vertex_curve = 10;
+        const point_curve = 5;
+        const vertex_curve = 10;
+        const circle_size = 130;
 
         //curve function
-        this.curve(bass, point, point_curve, 130);
-        this.curve(highMid, vertex, vertex_curve, 130);
+        this.curve(bass, point, point_curve, circle_size);
+        this.curve(highMid, vertex, vertex_curve, circle_size);
 
         //bar function
         this.bar(spectrum, bass);
@@ -27,7 +27,7 @@ Circle = class {
         image(t, 0, 0);
     }
 
-    curve = (energy, type, number, number2) => {
+    curve = (energy, type, curve_num, c_size) => {
         t.beginShape();
         // Making stroke color from energy of fourier.
         const color_curve = map(energy, 0, 255, 0, 150);
@@ -38,8 +38,8 @@ Circle = class {
         // This code was created with reference to this video https://www.youtube.com/watch?v=MzhBizCmpi8
         for(let i = 0; i < 360; i++) {
             const num_v = 0;
-            const num_v2 = number;
-            const num_v3 = 180 - number2;
+            const num_v2 = curve_num;
+            const num_v3 = 180 - c_size;
 
             const rMin = map(sin(energy),-1,1,num_v3,220);
             const rMax = map(sin(energy),-1,1,220,num_v3);

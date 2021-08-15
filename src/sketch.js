@@ -12,13 +12,11 @@ let amplitude;
 let t;
 let heart;
 
-let sampleBuffer = [];
-
 let spectrum, wave, level, bass, lowMid, mid, highMid;
 
 let playing = false;
 
-let boxes=[];
+let physics_circles=[];
 
 let gui;
 
@@ -42,6 +40,7 @@ function setup(){
 	background(0);
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	textFont(font);
+
 	//for circle.js
 	t = createGraphics(windowWidth, windowHeight);
 
@@ -51,9 +50,11 @@ function setup(){
 	fourier = new p5.FFT();
 	amplitude = new p5.Amplitude();
 
+	//place the circles in the setup phase.
 	const physics = new Physics();
 	physics.setup();
 
+	//place the geometries in the setup phase.
 	const geometry = new Three();
 	geometry.setup();
 
@@ -69,20 +70,22 @@ function setup(){
 	// gui = createGui('p5.gui');
 	// gui.addGlobals('point_curve', 'vertex_curve');
 
+
+	//create select box and display a menu
 	sel = createSelect();
 	sel.position(width-330, 40);
 	for(let i = 0; i < vis.visuals.length; i++){
 		sel.option(i+" : "+vis.visuals[i].name,[i]);
 	}
 	sel.changed(controls.menu);
-
-
 }
 
 function draw(){
 	background(0);
 	translate(-width/2,-height/2,0);
 
+	//each extension will always use one of these,
+	//so you can call them from anywhere by preparing them in advance in sketch.js draw.
 	spectrum = fourier.analyze();
 	wave = fourier.waveform();
 	level = amplitude.getLevel();
