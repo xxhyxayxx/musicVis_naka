@@ -9,13 +9,23 @@ Circle = class {
         t.push();
         t.translate(width/2, height/2);
 
-        const point_curve = 5;
-        const vertex_curve = 10;
-        const circle_size = 130;
-
         //curve function
-        this.curve(bass, point, point_curve, circle_size);
-        this.curve(highMid, vertex, vertex_curve, circle_size);
+        let arg =[
+                {
+                    energy: bass,
+                    type: point,
+                    curve_num: 5,
+                    c_size: 130
+                },
+                {
+                    energy: highMid,
+                    type: vertex,
+                    curve_num: 10,
+                    c_size: 130
+                }
+            ]
+        this.curve(arg[0]);
+        this.curve(arg[1]);
 
         //bar function
         this.bar(spectrum, bass);
@@ -28,10 +38,10 @@ Circle = class {
         image(t, 0, 0);
     }
 
-    curve = (energy, type, curve_num, c_size) => {
+    curve = (arg) => {
         t.beginShape();
         // Making stroke color from energy of fourier.
-        const color_curve = map(energy, 0, 255, 0, 150);
+        const color_curve = map(arg.energy, 0, 255, 0, 150);
         t.stroke(150, color_curve, 255);
         t.strokeWeight(4)
         t.noFill();
@@ -39,14 +49,14 @@ Circle = class {
         // This code was created with reference to this video https://www.youtube.com/watch?v=MzhBizCmpi8
         for(let i = 0; i < 360; i++) {
             const num_v = 0;
-            const num_v2 = curve_num;
-            const num_v3 = 180 - c_size;
+            const num_v2 = arg.curve_num;
+            const num_v3 = 180 - arg.c_size;
 
-            const rMin = map(sin(energy),-1,1,num_v3,220);
-            const rMax = map(sin(energy),-1,1,220,num_v3);
+            const rMin = map(sin(arg.energy),-1,1,num_v3,220);
+            const rMax = map(sin(arg.energy),-1,1,220,num_v3);
 
-            const r2Min = map(sin(energy),-1,1,220,num_v3);
-            const r2Max = map(sin(energy),-1,1,num_v3,220);
+            const r2Min = map(sin(arg.energy),-1,1,220,num_v3);
+            const r2Max = map(sin(arg.energy),-1,1,num_v3,220);
 
             const r1 = map(sin(i*num_v),-1,1,rMin,rMax);
             const r2 = map(sin(i*num_v2+90),-1,1,r2Min,r2Max);
@@ -55,10 +65,12 @@ Circle = class {
             const x = r * cos(i);
             const y = r * sin(i);
 
-            if(type === point){
-                t.point(x,y);
-            }else{
-                t.vertex(x,y);
+            switch(arg.type){
+                case point :
+                    t.point(x,y)
+                    break;
+                default :
+                    t.vertex(x,y)
             }
         }
         t.endShape(CLOSE);

@@ -99,6 +99,8 @@ function draw(){
 	//draw the controls on top.
 	controls.draw();
 
+	console.log(songs[1]);
+
 }
 
 function mouseClicked(){
