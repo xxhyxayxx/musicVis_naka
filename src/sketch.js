@@ -33,13 +33,13 @@ function preload(){
 	sound3 = loadSound('assets/sound/bensound-dubstep.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
-	songs.push(sound,sound2,sound3);
 }
 
 function setup(){
 	background(0);
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	textFont(font);
+	songs.push(sound,sound2,sound3);
 
 	//for circle.js
 	t = createGraphics(windowWidth, windowHeight);
@@ -98,8 +98,6 @@ function draw(){
 	vis.selectedVisual.draw();
 	//draw the controls on top.
 	controls.draw();
-
-	console.log(songs[1]);
 
 }
 
