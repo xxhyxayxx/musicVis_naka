@@ -1,4 +1,4 @@
-//draw the waveform to the screen
+//display the physics music visualization
 Physics = class{
 	//vis name
 	name = "physics";

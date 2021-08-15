@@ -1,3 +1,4 @@
+//display the circle music visualization
 Circle = class {
     //vis name
     name = "circle";

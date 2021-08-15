@@ -1,4 +1,4 @@
-//Constructor function to handle the onscreen menu, keyboard and mouse
+//Class to handle the onscreen menu, keyboard and mouse
 //controls
 ControlsAndInput = class{
 	sel;
@@ -56,7 +56,7 @@ ControlsAndInput = class{
 		vis.selectVisual(vis.visuals[value].name);
 	};
 
-	//When the full-screen button is clicked, the screen will go into full-screen mode,
+	//when the full-screen button is clicked, the screen will go into full-screen mode,
 	//and the text on the button will also change.
 	fullScreenHitcheck = () => {
 		if(mouseX > width-175 && mouseX < width-175 + 145 && mouseY > 30 && mouseY < 30 + 38) {

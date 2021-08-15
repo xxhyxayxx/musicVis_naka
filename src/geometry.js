@@ -1,3 +1,4 @@
+//control the geometry box
 Geometry = class{
     constructor(x, y, z, rotate_y, size) {
         this.x = x;
