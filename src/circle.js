@@ -9,16 +9,15 @@ Circle = class {
         t.push();
         t.translate(width/2, height/2);
 
+
         //curve function
         let arg =[
                 {
-                    energy: bass,
                     type: point,
                     curve_num: 5,
                     c_size: 130
                 },
                 {
-                    energy: highMid,
                     type: vertex,
                     curve_num: 10,
                     c_size: 130
@@ -41,33 +40,63 @@ Circle = class {
     curve = (arg) => {
         t.beginShape();
         // Making stroke color from energy of fourier.
-        const color_curve = map(arg.energy, 0, 255, 0, 150);
-        t.stroke(150, color_curve, 255);
-        //t.stroke(color_curve, 150, 255); //blue
-        //t.stroke(150, 255, color_curve); //green
-        //t.stroke(255, color_curve, 255); //pink
+        const color_energy = map(bass, 0, 255, 0, 150);
+
         switch(color_all) {
             case 'Purple':
-                t.stroke(150, color_curve, 255);
+                color_stroke = color(150, color_energy, 255);
                 break;
 
             case 'Blue':
-                t.stroke(color_curve, 150, 255);
+                color_stroke = color(color_energy, 150, 255);
                 break;
 
             case 'Yellow':
-                t.stroke(255, 255, color_curve);
+                color_stroke = color(255, 255, color_energy);
                 break;
 
             case 'Green':
-                t.stroke(150, 255, color_curve);
+                color_stroke = color(150, 255, color_energy);
                 break;
 
             case 'Pink':
-                t.stroke(255, color_curve, 255);
+                color_stroke = color(255, color_energy, 255);
                 break;
 
+            default:
+                color_stroke = color(150, color_energy, 255);
+
         }
+        const color_t = color(255);
+        t.stroke(255);
+
+        //console.log(color_t);
+        //console.log(color_stroke);
+        //t.stroke(color_curve, 150, 255); //blue
+        //t.stroke(150, 255, color_curve); //green
+        //t.stroke(255, color_curve, 255); //pink
+        // switch(color_all) {
+        //     case 'Purple':
+        //         t.stroke(150, color_curve, 255);
+        //         break;
+        //
+        //     case 'Blue':
+        //         t.stroke(color_curve, 150, 255);
+        //         break;
+        //
+        //     case 'Yellow':
+        //         t.stroke(255, 255, color_curve);
+        //         break;
+        //
+        //     case 'Green':
+        //         t.stroke(150, 255, color_curve);
+        //         break;
+        //
+        //     case 'Pink':
+        //         t.stroke(255, color_curve, 255);
+        //         break;
+        //
+        // }
         t.strokeWeight(4)
         t.noFill();
         // Making a shape using vertex or point.
@@ -153,29 +182,7 @@ Circle = class {
     arc = (arc_data) => {
         const c = map(arc_data[0], 0, 255, 0, 150);
         t.noFill();
-        switch(color_all) {
-            case 'Purple':
-                t.stroke(150, c, 255);
-                break;
-
-            case 'Blue':
-                t.stroke(c, 150, 255);
-                break;
-
-            case 'Yellow':
-                t.stroke(255, 255, c);
-                break;
-
-            case 'Green':
-                t.stroke(150, 255, c);
-                break;
-
-            case 'Pink':
-                t.stroke(255, c, 255);
-                break;
-
-        }
-        //t.stroke(150, c, 255);
+        t.stroke(color_stroke);
         t.strokeWeight(5);
         for(let i = 0; i < arc_data.length; i++){
             const arc_value = map(arc_data[i], 0, 255, 0, 2);

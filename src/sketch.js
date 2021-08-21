@@ -36,6 +36,8 @@ var bgColor = [0,0,0];
 
 var color_all = ['Purple','Blue', 'Green', 'Yellow','Pink'];
 
+let color_stroke;
+
 
 function preload(){
 	sound = loadSound('assets/sound/aspire-pryces-main-version-02-12-3077.mp3');
