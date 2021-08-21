@@ -27,9 +27,33 @@ Three = class{
         //add blue right from right side and red light from left side
         //then the lighting becomes pink!!
         ambientLight(25);
-        pointLight(255, 0, 0, -200, 0, 0); //red
-        //pointLight(0, 255, 0, 200, 0, 0); //green
-        pointLight(0, 0, 255, 200, 0, 0); //blue
+        switch(color_all) {
+            case 'Purple':
+                pointLight(100, 0, 0, -200, 0, 0); //red
+                pointLight(0, 0, 255, 200, 0, 0); //blue
+                break;
+
+            case 'Blue':
+                pointLight(0, 122, 100, -200, 0, 0); //green
+                pointLight(0, 0, 255, 200, 0, 0); //blue
+                break;
+
+            case 'Yellow':
+                pointLight(200, 0, 0, -200, 0, 0); //red
+                pointLight(100, 255, 0, 200, 0, 0); //yellow
+                break;
+
+            case 'Green':
+                pointLight(0, 255, 0, -200, 0, 0); //green
+                pointLight(100, 255, 0, 200, 0, 0); //yellow
+                break;
+
+            case 'Pink':
+                pointLight(255, 0, 0, -200, 0, 0); //red
+                pointLight(200, 50, 255, 200, 0, 0); //yellow
+                break;
+
+        }
 
         //add the obj model
         //the size of the model scales with the level of the song.
