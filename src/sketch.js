@@ -38,6 +38,10 @@ var color_all = ['Purple','Blue', 'Green', 'Yellow','Pink'];
 
 let color_stroke;
 
+let right_light;
+
+let left_light;
+
 
 function preload(){
 	sound = loadSound('assets/sound/aspire-pryces-main-version-02-12-3077.mp3');
@@ -117,6 +121,47 @@ function draw(){
 	lowMid = fourier.getEnergy( "lowMid",0.9 );
 	mid = fourier.getEnergy( "mid",0.9 );
 	highMid = fourier.getEnergy( "highMid",0.9 );
+
+	const color_energy = map(bass, 0, 255, 0, 150);
+
+	//color change by gui select box
+	switch(color_all) {
+		case 'Purple':
+			color_stroke = color(150, color_energy, 255);
+			left_light = color(100, 0, 0); //red
+			right_light = color(0, 0, 255); //blue
+			break;
+
+		case 'Blue':
+			color_stroke = color(color_energy, 150, 255);
+			left_light = color(0, 122, 100); //green
+			right_light = color(0, 0, 255); //blue
+			break;
+
+		case 'Yellow':
+			color_stroke = color(255, 255, color_energy);
+			left_light = color(200, 0, 0); //red
+			right_light = color(100, 255, 0); //yellow
+			break;
+
+		case 'Green':
+			color_stroke = color(150, 255, color_energy);
+			left_light = color(0, 255, 0); //green
+			right_light = color(100, 255, 0); //yellow
+			break;
+
+		case 'Pink':
+			color_stroke = color(255, color_energy, 255);
+			left_light = color(200, 0, 0); //red
+			right_light = color(200, 50, 255); //yellow
+			break;
+
+		default:
+			color_stroke = color(150, color_energy, 255);
+			left_light = color(100, 0, 0); //red
+			right_light = color(0, 0, 255); //blue
+
+	}
 
 	//draw the selected visualisation
 	vis.selectedVisual.draw();

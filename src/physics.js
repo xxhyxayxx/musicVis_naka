@@ -41,12 +41,10 @@ Physics = class{
 		for(let i = 0; i < physics_circles.length; i++){
 			let size = map(wave[i], -1, 1, 0.8, 1.2);
 			let value = 1;
-			const color = map(bass, 0, 255, 0, 255);
-			//const color2 = map(highMid, 0, 255, 0, 255);
 			if (songs_obj.sound[0].isPlaying() || songs_obj.sound[1].isPlaying() || songs_obj.sound[2].isPlaying()) {
 				value = size
 			}
-			physics_circles[i].show(color);
+			physics_circles[i].show();
 			physics_circles[i].scale(value);
 		}
 

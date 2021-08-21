@@ -23,37 +23,9 @@ Three = class{
         noStroke();
         let level_map = map(level, 0, 1, 0, 50);
         translate(width/2,height/2,0);
-
-        //add blue right from right side and red light from left side
-        //then the lighting becomes pink!!
         ambientLight(25);
-        switch(color_all) {
-            case 'Purple':
-                pointLight(100, 0, 0, -200, 0, 0); //red
-                pointLight(0, 0, 255, 200, 0, 0); //blue
-                break;
-
-            case 'Blue':
-                pointLight(0, 122, 100, -200, 0, 0); //green
-                pointLight(0, 0, 255, 200, 0, 0); //blue
-                break;
-
-            case 'Yellow':
-                pointLight(200, 0, 0, -200, 0, 0); //red
-                pointLight(100, 255, 0, 200, 0, 0); //yellow
-                break;
-
-            case 'Green':
-                pointLight(0, 255, 0, -200, 0, 0); //green
-                pointLight(100, 255, 0, 200, 0, 0); //yellow
-                break;
-
-            case 'Pink':
-                pointLight(255, 0, 0, -200, 0, 0); //red
-                pointLight(200, 50, 255, 200, 0, 0); //yellow
-                break;
-
-        }
+        pointLight(right_light, -200, 0, 0);
+        pointLight(left_light, 255, 200, 0, 0);
 
         //add the obj model
         //the size of the model scales with the level of the song.
