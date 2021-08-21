@@ -19,7 +19,7 @@ Three = class{
 
     draw = () => {
         push();
-        background(0);
+        background(bgColor);
         noStroke();
         let level_map = map(level, 0, 1, 0, 50);
         translate(width/2,height/2,0);
@@ -27,8 +27,9 @@ Three = class{
         //add blue right from right side and red light from left side
         //then the lighting becomes pink!!
         ambientLight(25);
-        pointLight(255, 0, 0, -200, 0, 0);
-        pointLight(0, 0, 255, 200, 0, 0);
+        pointLight(255, 0, 0, -200, 0, 0); //red
+        //pointLight(0, 255, 0, 200, 0, 0); //green
+        pointLight(0, 0, 255, 200, 0, 0); //blue
 
         //add the obj model
         //the size of the model scales with the level of the song.

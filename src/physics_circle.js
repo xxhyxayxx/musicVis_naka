@@ -10,9 +10,12 @@ Physics_circle = class {
 	}
 
 	//draw the vertex shape created by draw_body function
-	show = (color, color2) => {
+	show = (color) => {
 		push();
-		stroke(255, color2, color);
+		//stroke(150, color, 255); //purple to blue
+		//stroke(150, 255, color); //green to blue
+		//stroke(255, color, 150); //pink to yellow
+		stroke(color, 150, 255); //blue to pink
 		noFill();
 		this.draw_body(this.body);
 		pop();

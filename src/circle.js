@@ -4,7 +4,7 @@ Circle = class {
     name = "circle";
 
     draw = () => {
-        t.background(0);
+        t.background(bgColor);
 
         t.push();
         t.translate(width/2, height/2);
@@ -43,6 +43,31 @@ Circle = class {
         // Making stroke color from energy of fourier.
         const color_curve = map(arg.energy, 0, 255, 0, 150);
         t.stroke(150, color_curve, 255);
+        //t.stroke(color_curve, 150, 255); //blue
+        //t.stroke(150, 255, color_curve); //green
+        //t.stroke(255, color_curve, 255); //pink
+        switch(color_all) {
+            case 'Purple':
+                t.stroke(150, color_curve, 255);
+                break;
+
+            case 'Blue':
+                t.stroke(color_curve, 150, 255);
+                break;
+
+            case 'Yellow':
+                t.stroke(255, 255, color_curve);
+                break;
+
+            case 'Green':
+                t.stroke(150, 255, color_curve);
+                break;
+
+            case 'Pink':
+                t.stroke(255, color_curve, 255);
+                break;
+
+        }
         t.strokeWeight(4)
         t.noFill();
         // Making a shape using vertex or point.
@@ -94,7 +119,32 @@ Circle = class {
             const pi_x = r * sin(angle);
             const pi_y = r * cos(angle);
             t.rotate(step);
-            t.fill(c2,c,255);
+            switch(color_all) {
+                case 'Purple':
+                    t.fill(c2,c,255);
+                    break;
+
+                case 'Blue':
+                    t.fill(c,c2,255);
+                    break;
+
+                case 'Yellow':
+                    t.fill(255,c2,c);
+                    break;
+
+                case 'Green':
+                    t.fill(c,255,c2);
+                    break;
+
+                case 'Pink':
+                    t.fill(255,c,c2);
+                    break;
+
+            }
+            //t.fill(c2,c,255); //blue to pink
+            //t.fill(255,c,c2); //yellow to red
+            //t.fill(c,c2,255); //purple to blue
+            //t.fill(c,255,c2); //green to yellow
             t.rect(pi_x, pi_y, 5, height, 2.5);
         }
     }
@@ -103,7 +153,29 @@ Circle = class {
     arc = (arc_data) => {
         const c = map(arc_data[0], 0, 255, 0, 150);
         t.noFill();
-        t.stroke(150, c, 255);
+        switch(color_all) {
+            case 'Purple':
+                t.stroke(150, c, 255);
+                break;
+
+            case 'Blue':
+                t.stroke(c, 150, 255);
+                break;
+
+            case 'Yellow':
+                t.stroke(255, 255, c);
+                break;
+
+            case 'Green':
+                t.stroke(150, 255, c);
+                break;
+
+            case 'Pink':
+                t.stroke(255, c, 255);
+                break;
+
+        }
+        //t.stroke(150, c, 255);
         t.strokeWeight(5);
         for(let i = 0; i < arc_data.length; i++){
             const arc_value = map(arc_data[i], 0, 255, 0, 2);

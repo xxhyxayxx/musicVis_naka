@@ -32,6 +32,10 @@ let geometry_arry = [];
 
 let sel;
 
+var bgColor = [0,0,0];
+
+var color_all = ['Purple','Blue', 'Green', 'Yellow','Pink'];
+
 
 function preload(){
 	sound = loadSound('assets/sound/aspire-pryces-main-version-02-12-3077.mp3');
@@ -42,11 +46,11 @@ function preload(){
 }
 
 function setup(){
-	background(0);
+	background(bgColor);
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	textFont(font);
 
-	//set up for drawing a song title and text
+	//make music playlist
 	const songs = [];
 	songs.push(sound,sound2,sound3);
 
@@ -84,10 +88,10 @@ function setup(){
 
 	angleMode(DEGREES);
 
-	// sliderRange(0, 12, 1);
-	// gui = createGui('p5.gui');
-	// gui.addGlobals('point_curve', 'vertex_curve');
-
+	sliderRange(0, 12, 1);
+	gui = createGui('p5.gui');
+	gui.setPosition(50, height-300);
+	gui.addGlobals('bgColor','color_all');
 
 	//create select box and display a menu
 	sel = createSelect();
@@ -99,7 +103,7 @@ function setup(){
 }
 
 function draw(){
-	background(0);
+	background(bgColor);
 	translate(-width/2,-height/2,0);
 
 	//each extension will always use one of these,
