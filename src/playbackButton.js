@@ -53,18 +53,29 @@ PlaybackButton = class{
 		rect(next.x+15, next.y, next.w-15, next.h);
 		triangle(next.x, next.y+back.h, next.x - 5 + next.w, next.y + next.h/2, next.x, next.y);
 		pop();
+
+		//draw song title and name
+		push();
+		textSize(20);
+		const songTitle = songs_obj.title[this.num];
+		const singerName = songs_obj.name[this.num];
+		text(songTitle, 180, 56);
+		textSize(15);
+		text(singerName, 180, 86);
+		pop();
 	};
 
 	//checks for clicks on the button, starts or pauses playback.
 	//@returns true if clicked false otherwise.
 	hitCheck = () => {
 		const play = this.playButton;
+		const currentSong = songs_obj.sound;
 
 		if(mouseX > play.x && mouseX < play.x + play.w && mouseY > play.y && mouseY < play.y + play.h){
-			if (songs[this.num].isPlaying()) {
-    			songs[this.num].pause();
+			if (currentSong[this.num].isPlaying()) {
+				currentSong[this.num].pause();
   			} else {
-    			songs[this.num].loop();
+				currentSong[this.num].loop();
   			}
   			playing = !playing;
   			return true;
@@ -76,17 +87,18 @@ PlaybackButton = class{
 	//if it's true, the index of the song's array is subtracted by one, and the previous song will play.
 	backHitCheck = () => {
 		const back = this.backButton;
+		const currentSong = songs_obj.sound;
 
 		if(mouseX > back.x && mouseX < back.x + back.w && mouseY > back.y && mouseY < back.y + back.h){
 			if(this.num > 0 && playing){
-				songs[this.num].stop();
+				currentSong[this.num].stop();
 				this.num --;
-				songs[this.num].loop();
+				currentSong[this.num].loop();
 			}else if(this.num > 0 && !playing){
-				songs[this.num].stop();
+				currentSong[this.num].stop();
 				playing = true;
 				this.num --;
-				songs[this.num].loop();
+				currentSong[this.num].loop();
 			}
 		}
 	};
@@ -95,17 +107,19 @@ PlaybackButton = class{
 	//if it's true, the index of the song's array is added by one, and the next song will play.
 	nextHitCheck = () => {
 		const next = this.nextButton;
+		const currentSong = songs_obj.sound;
+		const song_num = currentSong.length-1;
 
 		if(mouseX > next.x && mouseX < next.x + next.w && mouseY > next.y && mouseY < next.y + next.h){
-			if(this.num < 2 && playing){
-				songs[this.num].stop();
+			if(this.num < song_num && playing){
+				currentSong[this.num].stop();
 				this.num ++;
-				songs[this.num].loop();
-			}else if(this.num < 2 && !playing){
-				songs[this.num].stop();
+				currentSong[this.num].loop();
+			}else if(this.num < song_num && !playing){
+				currentSong[this.num].stop();
 				playing = true;
 				this.num ++;
-				songs[this.num].loop();
+				currentSong[this.num].loop();
 			}
 		}
 	}

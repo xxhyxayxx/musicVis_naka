@@ -9,10 +9,16 @@ let sound3 = null;
 
 let fourier;
 let amplitude;
-let t;
 let heart;
+let spectrum;
+let wave;
+let level;
+let bass;
+let lowMid;
+let mid;
+let highMid;
 
-let spectrum, wave, level, bass, lowMid, mid, highMid;
+let t;
 
 let playing = false;
 
@@ -20,7 +26,7 @@ let physics_circles=[];
 
 let gui;
 
-let songs = [];
+let songs_obj = {};
 
 let geometry_arry = [];
 
@@ -28,8 +34,8 @@ let sel;
 
 
 function preload(){
-	sound = loadSound('assets/sound/bensound-slowmotion.mp3');
-	sound2 = loadSound('assets/sound/bensound-dreams.mp3');
+	sound = loadSound('assets/sound/aspire-pryces-main-version-02-12-3077.mp3');
+	sound2 = loadSound('assets/sound/poem-soundroll-main-version-02-33-17721.mp3');
 	sound3 = loadSound('assets/sound/bensound-dubstep.mp3');
 	font = loadFont('assets/fonts/Roboto-Regular.ttf');
 	heart = loadModel('assets/models/heart.obj',true);
@@ -39,7 +45,19 @@ function setup(){
 	background(0);
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	textFont(font);
+
+	//set up for drawing a song title and text
+	const songs = [];
 	songs.push(sound,sound2,sound3);
+
+	const title = ['Aspire','Poem','Dubstep'];
+
+	const name = ['Pryces','Soundroll','Bensound'];
+
+	songs_obj.sound = songs;
+	songs_obj.title = title;
+	songs_obj.name = name;
+
 
 	//for circle.js
 	t = createGraphics(windowWidth, windowHeight);
@@ -75,7 +93,7 @@ function setup(){
 	sel = createSelect();
 	sel.position(width-330, 40);
 	for(let i = 0; i < vis.visuals.length; i++){
-		sel.option(i+" : "+vis.visuals[i].name,[i]);
+		sel.option(i+1+" : "+vis.visuals[i].name,[i]);
 	}
 	sel.changed(controls.menu);
 }

@@ -23,7 +23,7 @@ Circle = class {
                     curve_num: 10,
                     c_size: 130
                 }
-            ]
+            ];
         this.curve(arg[0]);
         this.curve(arg[1]);
 
@@ -101,17 +101,13 @@ Circle = class {
 
     // Making arc bars that each bar using different energy.
     arc = (arc_data) => {
-        const y = map(arc_data[0], 0, 255, 0, 2);
-        const m = map(arc_data[1], 0, 255, 0, 2);
-        const mi = map(arc_data[2], 0, 255, 0, 2);
-        const high = map(arc_data[3], 0, 255, 0, 2);
         const c = map(arc_data[0], 0, 255, 0, 150);
         t.noFill();
         t.stroke(150, c, 255);
         t.strokeWeight(5);
-        t.arc(0, 0, 380, 380, 60, PI*y+60);
-        t.arc(0, 0, 360, 360, 45, PI*m+45);
-        t.arc(0, 0, 340, 340, 90, PI*mi+90);
-        t.arc(0, 0, 320, 320, 0, PI*high);
+        for(let i = 0; i < arc_data.length; i++){
+            const arc_value = map(arc_data[i], 0, 255, 0, 2);
+            t.arc(0, 0, 320+i*20, 320+i*20, i*45, PI*arc_value+i*45);
+        }
     }
 }

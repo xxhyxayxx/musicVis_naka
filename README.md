@@ -36,3 +36,15 @@
 * physics_circle.js
 
 
+##Credit for songs
+
+Music from Uppbeat (free for Creators!):
+https://uppbeat.io/t/pryces/aspire
+License code: E74SUJA1FCAFAIZY
+
+Music from Uppbeat (free for Creators!):
+https://uppbeat.io/t/soundroll/poem
+License code: 6WAFFTRHU87KAHYK
+
+
+

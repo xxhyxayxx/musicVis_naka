@@ -40,11 +40,11 @@ ControlsAndInput = class{
 		//draw the full-screen button
 		push();
 		textSize(15);
-		text(this.text, width-160, 53);
+		text(this.text, width-190, 53);
 		noFill();
 		stroke(255);
 		strokeWeight(1);
-		rect(width-175, 30, 145, 38, 50);
+		rect(width-205, 30, 145, 38, 50);
 		pop();
 		pop();
 
