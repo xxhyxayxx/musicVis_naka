@@ -45,6 +45,7 @@ Physics = class{
 			const color2 = map(highMid, 0, 255, 0, 255);
 			if (songs[0].isPlaying() || songs[1].isPlaying() || songs[2].isPlaying()) {
 				value = size
+				console.log(size);
 			}
 			physics_circles[i].show(color, color2);
 			physics_circles[i].scale(value);
