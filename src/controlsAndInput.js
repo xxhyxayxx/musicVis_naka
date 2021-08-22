@@ -47,6 +47,18 @@ ControlsAndInput = class{
 		pop();
 		pop();
 
+
+		if(fullscreen()){
+			this.text = 'Exit Full Screen';
+			visible = false;
+		}else{
+			this.text = 'Full Screen Mode';
+			visible = true;
+		}
+
+
+		if(visible) gui.show(); else gui.hide();
+
 	};
 
 	//the music visualizer screen will switch depending on the value selected in the select box.
@@ -61,13 +73,7 @@ ControlsAndInput = class{
 		if(mouseX > width-175 && mouseX < width-175 + 145 && mouseY > 30 && mouseY < 30 + 38) {
 			const fs = fullscreen();
 			fullscreen(!fs);
-			if(!fs){
-				this.text = 'Exit Full Screen'
-			}else{
-				this.text = 'Full Screen Mode'
-			}
 			visible = !visible;
-			if(visible) gui.show(); else gui.hide();
 		}
 	}
 }
