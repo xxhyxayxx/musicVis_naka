@@ -33,6 +33,7 @@ PlaybackButton = class{
 		const back = this.backButton;
 		const next = this.nextButton;
 
+		noStroke();
 		//draw back button
 		push();
 		rect(back.x, back.y, back.w-15, back.h);

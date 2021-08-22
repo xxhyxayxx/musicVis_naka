@@ -36,6 +36,10 @@ var bgColor = [0,0,0];
 
 var color_all = ['Purple','Blue', 'Green', 'Yellow','Pink'];
 
+var text_button_color = [255,255,255];
+
+var visible = true;
+
 let color_stroke;
 
 let right_light;
@@ -97,7 +101,7 @@ function setup(){
 	sliderRange(0, 12, 1);
 	gui = createGui('p5.gui');
 	gui.setPosition(50, height-300);
-	gui.addGlobals('bgColor','color_all');
+	gui.addGlobals('bgColor','text_button_color','color_all');
 
 	//create select box and display a menu
 	sel = createSelect();

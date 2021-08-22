@@ -25,9 +25,8 @@ ControlsAndInput = class{
 	//draws the playback button and potentially the menu
 	draw = () => {
 		push();
-		fill("white");
-		stroke("black");
-		strokeWeight(2);
+		fill(text_button_color);
+		noStroke();
 		textSize(34);
 
 		this.playbackButton.draw();
@@ -42,7 +41,7 @@ ControlsAndInput = class{
 		textSize(15);
 		text(this.text, width-190, 53);
 		noFill();
-		stroke(255);
+		stroke(text_button_color);
 		strokeWeight(1);
 		rect(width-205, 30, 145, 38, 50);
 		pop();
@@ -67,6 +66,8 @@ ControlsAndInput = class{
 			}else{
 				this.text = 'Full Screen Mode'
 			}
+			visible = !visible;
+			if(visible) gui.show(); else gui.hide();
 		}
 	}
 }
