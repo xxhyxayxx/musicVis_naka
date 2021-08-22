@@ -98,6 +98,7 @@ function setup(){
 
 	angleMode(DEGREES);
 
+	//add gui
 	sliderRange(0, 12, 1);
 	gui = createGui('p5.gui');
 	gui.setPosition(50, height-300);
