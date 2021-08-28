@@ -6,7 +6,8 @@ Three = class{
     setup = () => {
         //decide the number of geometries to be displayed according to the screen width
         //and push them to geometry_arry.
-        for(let i = 0; i < width/80; i++){
+        const box_geometry_num = 10;
+        for(let i = 0; i < box_geometry_num; i++){
             const step = 100;
             //set a condition so that geometries of equal volume are placed on the left and right sides of the screen.
             if(i % 2 === 0){

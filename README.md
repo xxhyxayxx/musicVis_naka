@@ -2,21 +2,18 @@
 
 ##The folder structure
 
-* report (The midterm reports are in this directory.)
-  * q1
-      * Section1 Overview of your project.pdf
-  * q2
-      * Section2 Outline your project.pdf
-      * figure1.jpg
-      * figure2.jpg
-      * figure3.png
-      * figure4.png
-  * q3
-      * Section3 Time planning.pdf
-      * figure5.png
-      * figure6.png
-  * q4
-      * Section4 List any external sources.pdf
+* final_report (The reports for final submission are in this directory.)
+  * report1.pdf
+      * Report 1 List the modifications and extension that you have made to the template (400 words)
+  * report2.pdf
+      * Report 2 Describe how effective your plan was in completing your project (250 words)
+  * report3.pdf
+      * Report 3 Evaluate the process of completing the project and how effective the final product is. (250 words)
+  * external_sources_list.pdf
+      * List any external sources that you have actively utilised in your project.
+  * project_log.pdf
+    * Bundle together my progress logs.
+
 
 
 * src (The project source code is in this directory.)
@@ -24,16 +21,7 @@
       * fonts (Store fonts)
       * models (Store 3D models)
       * sound (Store sound files)
-  * figures (Store images)
   * lib (Store library files)
-  
-
-##Extension source code that I made at this moment
-
-* 3d.js
-* circle.js
-* physics.js
-* physics_circle.js
 
 
 ##Credit for songs
